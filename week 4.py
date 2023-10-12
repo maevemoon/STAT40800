@@ -37,3 +37,18 @@ pddata = pd.read_csv(path+'sample_dat.dat',sep='\t') # \t = tab
 # exercise 5
 covid = pd.read_excel(path + 'covid-cases.xlsx', skiprows=[0,1,2], index_col='date') #skiprows so we can get index column
 print(covid.tail(10))
+
+# assessed exercises
+# question 2
+# text and numbers in separate lists
+text = []
+numbers = []
+for line in open('AE1_data.txt'):
+    items = line.rstrip('\n').split(' ')
+    for j in items:
+        if j.isalpha()==True: 
+            text.append(j) 
+        else:
+            numbers.append(int(j))
+print(text)
+print(numbers)
