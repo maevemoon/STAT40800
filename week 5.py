@@ -1,8 +1,10 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 # https://matplotlib.org/2.1.1/api/_as_gen/matplotlib.pyplot.plot.html
+# https://matplotlib.org/stable/users/explain/colors/colormaps.html#classes-of-colormaps 
 
 path = 'week 5 data/'
 diamonds = pd.read_csv(path+'diamonds2.csv')
@@ -25,3 +27,19 @@ plt.savefig('week 5 data/example plot.png')
 
 # plt.figure - start
 # plt.subplot - another figure in same window
+
+# assessed exercises
+tips = sns.load_dataset('tips')
+print(tips)
+print(tips['sex'].value_counts()['Female']) # counting occurences of specific thing in dataframe
+
+tip_precentage = (tips.iloc[:,1] / tips.iloc[:,0]) * 100
+tips['tip_precentage'] = tip_precentage # adding column to dataframe
+print(tips)
+
+sns.relplot(data=tips,x='tip_precentage',y='total_bill',hue='time')
+plt.savefig('week 5 data/tips.png')
+
+plt.figure()
+sns.displot(kind='hist',data=tips,x='tip_precentage',y='tip',hue='sex')
+plt.savefig('week 5 data/tips2.png')
